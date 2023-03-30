@@ -5,16 +5,22 @@
 
   const select = {
     templateOf: {
-      templateBook: '#template-book',
+      templateProduct: '#template-book',
     },
 
     containerOf: {
-      booksList: '.books-list',
+      productsList: '.books-list',
     },
+
+    menuProduct: {
+      imageWrapper: '.book__image',
+      imageId: '.data-id',
+    }
+
   };
 
   const templates = {
-    templateBook: Handlebars.compile(document.querySelector(select.templateOf.templateBook).innerHTML),
+    templateProduct: Handlebars.compile(document.querySelector(select.templateOf.templateProduct).innerHTML),
   };
 
   function render(){
@@ -24,14 +30,14 @@
       console.log(book);
 
       // generate HTML based on template //
-      const generatedHTML = templates.templateBook(book);
+      const generatedHTML = templates.templateProduct(book);
       console.log(generatedHTML);
 
       // create element DOM using utils.createElementFromHTML //
       thisProduct.bookElementDom = utils.createDOMFromHTML(generatedHTML);
 
       // find container .books-list //
-      const booksListContainer = document.querySelector(select.containerOf.booksList);
+      const booksListContainer = document.querySelector(select.containerOf.productsList);
       console.log(booksListContainer);
 
       // add element DOM to container .books-list //
@@ -41,4 +47,22 @@
   render();
 
 
+  function initActions(){
+    const favoriteBooks = [];
+    console.log(favoriteBooks);
+
+    for(let image of select.menuProduct.imageWrapper){
+      image.addEventListener('dblclick', function(event){
+        event.preventDefault();
+        // add class favorite to the dblclick image
+        image.classList.add('favorite');
+        // getAttribute from data-id dblclick image
+        const bookId = image.getAttribute(select.menuProduct.imageId);
+        console.log(bookId);
+        // add const bookId to the favoriteBooks []
+        favoriteBooks.push(bookId);
+      });
+    }
+  }
+  initActions();
 }
