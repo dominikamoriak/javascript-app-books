@@ -48,7 +48,6 @@
 
   function initActions(){
     const favoriteBooks = [];
-    console.log(favoriteBooks);
 
     // find all book images
     const bookImages = document.querySelectorAll(select.menuProduct.imageWrapper);
@@ -57,13 +56,30 @@
     for(let image of bookImages){
       image.addEventListener('dblclick', function(event){
         event.preventDefault();
-        // add class favorite to the dblclick image
-        image.classList.add('favorite');
-        // getAttribute from data-id dblclick image
-        const bookId = image.getAttribute(select.menuProduct.imageId);
-        console.log(bookId);
-        // add const bookId to the favoriteBooks []
-        favoriteBooks.push(bookId);
+
+        // check if the book is already favorited
+        if(image.classList.contains('favorite')){
+
+          // yes, it's favorited, so remove the favorite class
+          image.classList.remove('favorite');
+          // getAttribute from data-id dblclick image
+          const bookId = image.getAttribute(select.menuProduct.imageId);
+          console.log(bookId);
+          // find the index of the bookId in [] the favoriteBooks array
+          const index = favoriteBooks.indexOf(bookId);
+          // remove bookId from [] the favoriteBooks array
+          favoriteBooks.splice(index, 1);
+
+        } else {
+        // no, it'snt favorited, so add class favorite to the dblclick image
+          image.classList.add('favorite');
+          // getAttribute from data-id dblclick image
+          const bookId = image.getAttribute(select.menuProduct.imageId);
+          console.log(bookId);
+          // add const bookId to [] the favoriteBooks array
+          favoriteBooks.push(bookId);
+        }
+        console.log(favoriteBooks);
       });
     }
   }
