@@ -58,7 +58,7 @@
     console.log(bookImages);
 
     for(let image of thisProduct.imageWrapper){
-      thisProduct.image.addEventListener('dblclick', function(event){
+      image.addEventListener('dblclick', function(event){
         event.preventDefault();
         // add class favorite to the dblclick image
         image.classList.add('favorite');
