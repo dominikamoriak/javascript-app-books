@@ -53,6 +53,10 @@
     const favoriteBooks = [];
     console.log(favoriteBooks);
 
+    // find all book images
+    const bookImages = document.querySelectorAll(select.menuProduct.imageWrapper);
+    console.log(bookImages);
+
     for(let image of thisProduct.imageWrapper){
       thisProduct.image.addEventListener('dblclick', function(event){
         event.preventDefault();
