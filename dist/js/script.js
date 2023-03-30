@@ -14,7 +14,6 @@
 
     menuProduct: {
       imageWrapper: '.book__image',
-      imageId: '.data-id',
     }
 
   };
@@ -56,14 +55,15 @@
     for(let image of bookImages){
       image.addEventListener('dblclick', function(event){
         event.preventDefault();
+        const clickedElement = this;
 
         // check if the book is already favorited
         if(image.classList.contains('favorite')){
 
           // yes, it's favorited, so remove the favorite class
-          image.classList.remove('favorite');
-          // getAttribute from data-id dblclick image
-          const bookId = image.getAttribute(select.menuProduct.imageId);
+          clickedElement.classList.remove('favorite');
+          // getAttribute 'data-id' from dblclick element
+          const bookId = clickedElement.getAttribute('data-id');
           console.log(bookId);
           // find the index of the bookId in [] the favoriteBooks array
           const index = favoriteBooks.indexOf(bookId);
@@ -72,9 +72,9 @@
 
         } else {
         // no, it'snt favorited, so add class favorite to the dblclick image
-          image.classList.add('favorite');
+          clickedElement.classList.add('favorite');
           // getAttribute from data-id dblclick image
-          const bookId = image.getAttribute(select.menuProduct.imageId);
+          const bookId = clickedElement.getAttribute('data-id');
           console.log(bookId);
           // add const bookId to [] the favoriteBooks array
           favoriteBooks.push(bookId);
