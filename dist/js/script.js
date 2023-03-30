@@ -46,10 +46,7 @@
   }
   render();
 
-
   function initActions(){
-    const thisProduct = this;
-
     const favoriteBooks = [];
     console.log(favoriteBooks);
 
@@ -57,7 +54,7 @@
     const bookImages = document.querySelectorAll(select.menuProduct.imageWrapper);
     console.log(bookImages);
 
-    for(let image of thisProduct.imageWrapper){
+    for(let image of bookImages){
       image.addEventListener('dblclick', function(event){
         event.preventDefault();
         // add class favorite to the dblclick image
