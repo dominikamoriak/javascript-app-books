@@ -24,16 +24,18 @@
       console.log(book);
 
       // generate HTML based on template //
-      const generatedHTML = templates.templateBook(thisProduct.data);
+      const generatedHTML = templates.templateBook(book);
+      console.log(generatedHTML);
 
       // create element DOM using utils.createElementFromHTML //
-      thisProduct.dom = utils.createDOMFromHTML(generatedHTML);
+      thisProduct.bookElementDom = utils.createDOMFromHTML(generatedHTML);
 
       // find container .books-list //
       const booksListContainer = document.querySelector(select.containerOf.booksList);
+      console.log(booksListContainer);
 
       // add element DOM to container .books-list //
-      booksListContainer.appendChild(thisProduct.dom);
+      booksListContainer.appendChild(thisProduct.bookElementDom);
     }
   }
   render();
