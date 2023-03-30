@@ -1,38 +1,42 @@
 /* global Handlebars, utils, dataSource */ // eslint-disable-line no-unused-vars
 
 {
-    'use strict';
+  'use strict';
 
-    const select = {
-      templateOf: {
-        template: '#template-book',
-        },
+  const select = {
+    templateOf: {
+      templateBook: '#template-book',
+    },
 
-      containerOf: {
-        booksList = '.books-list',
-      },
+    containerOf: {
+      booksList: '.books-list',
+    },
+  };
 
-    };
+  const templates = {
+    templateBook: Handlebars.compile(document.querySelector(select.templateOf.templateBook).innerHTML),
+  };
 
-    render(){
-        const thisProduct = this;
+  function render(){
+    const thisProduct = this;
 
-        for(let book of dataSource.books){
+    for(let book of dataSource.books){
+      console.log(book);
 
-        // generate HTML based on template //
-        const generatedHTML = template(thisProduct.data);
+      // generate HTML based on template //
+      const generatedHTML = templates.templateBook(thisProduct.data);
 
-        // create element DOM using utils.createElementFromHTML //
-        thisProduct.element = utils.createDOMFromHTML(generatedHTML);
+      // create element DOM using utils.createElementFromHTML //
+      thisProduct.dom = utils.createDOMFromHTML(generatedHTML);
 
-        // find container .books-list //
-        const booksListContainer = document.querySelector(select.containerOf.booksList);
+      // find container .books-list //
+      const booksListContainer = document.querySelector(select.containerOf.booksList);
 
-        // add element DOM to container .books-list //
-        booksListContainer.appendChild(thisProduct.element);
-            }
+      // add element DOM to container .books-list //
+      booksListContainer.appendChild(thisProduct.dom);
     }
-    render();
+  }
+  render();
 
 
 
