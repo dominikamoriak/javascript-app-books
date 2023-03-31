@@ -50,7 +50,7 @@
     const favoriteBooks = [];
 
     // find the books list container
-    const booksListContainer = document.querySelectorAll(select.containerOf.productsList);
+    const booksListContainer = document.querySelector(select.containerOf.productsList);
     console.log(booksListContainer);
 
     // add event listener to books list container
