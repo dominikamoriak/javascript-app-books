@@ -127,7 +127,8 @@
     for(let book of dataSource.books){
       let shouldBeHidden = false;
 
-      for(let filter of filters){
+      for(const filter of filters){
+        // if value of details isn't true!
         if(!book.details[filter]){
           shouldBeHidden = true;
           break;
