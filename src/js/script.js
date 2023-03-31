@@ -14,8 +14,10 @@
 
     menuProduct: {
       imageWrapper: '.book__image',
-      imageId: 'data-id',
-      filtersform: '.filters',
+      productId: 'data-id',
+      imageId: '.book__image[data-id="id-of-the-book-here"]',
+      filtersForm: '.filters',
+      filtersInputName: 'filters.input[name="filter"]',
     }
 
   };
@@ -68,7 +70,7 @@
           // yes, it's favorited, so remove the favorite class from the dblclick element
           clickedElement.classList.remove('favorite');
           // getAttribute 'data-id' from dblclick element
-          const bookId = clickedElement.getAttribute(select.menuProduct.imageId);
+          const bookId = clickedElement.getAttribute(select.menuProduct.productId);
           console.log(bookId);
 
           // find the index of the bookId in [] the favoriteBooks array
@@ -80,7 +82,7 @@
         // no, it'snt favorited, so add class favorite to the dblclick image
           clickedElement.classList.add('favorite');
           // getAttribute from data-id dblclick image
-          const bookId = clickedElement.getAttribute(select.menuProduct.imageId);
+          const bookId = clickedElement.getAttribute(select.menuProduct.productId);
           console.log(bookId);
           // add const bookId to [] the favoriteBooks array
           favoriteBooks.push(bookId);
@@ -90,7 +92,7 @@
     });
 
     const filters = [];
-    const filtersForm = document.querySelector(select.menuProduct.filtersform);
+    const filtersForm = document.querySelector(select.menuProduct.filtersForm);
     console.log(filtersForm);
 
     filtersForm.addEventListener('click', function(event){
@@ -112,10 +114,41 @@
         }
       }
       console.log(filters);
+      filterBooks();
     });
-
-
-
   }
   initActions();
+
+  function filterBooks(){
+
+    const filters = document.querySelectorAll(select.menuProduct.filtersInputName);
+    console.log(filters);
+    
+    for(let book of dataSource.books){
+      let shouldBeHidden = false;
+
+      for(let filter of filters){
+        if(!book.details[filter]){
+          shouldBeHidden = true;
+          break;
+        }
+
+        const bookImageId = document.querySelector(select.menuProduct.imageId);
+        console.log(bookImageId);
+
+        // check value of shouldBeHidden
+        if(shouldBeHidden){
+        // = true, so find element .book__image and add class hidden
+          bookImageId.classList.add('hidden');
+        } else {
+        // = false, so get class hidden
+          bookImageId.classList.remove('hidden');
+        }
+
+      }
+
+    
+
+    }
+  }
 }
