@@ -15,6 +15,7 @@
     menuProduct: {
       imageWrapper: '.book__image',
       imageId: 'data-id',
+      filtersform: '.filters',
     }
 
   };
@@ -58,7 +59,7 @@
     // find the clicked book image
       const clickedElement = event.target.offsetParent;
       // check if the clicked element is a book image
-      if(clickedElement.classList.contains(select.menuProduct.imageWrapper)){
+      if(clickedElement.classList.contains('book__image')){
         event.preventDefault();
 
         // check if the book is already favorited
@@ -87,6 +88,33 @@
         console.log(favoriteBooks);
       }
     });
+
+    const filters = [];
+    const filtersForm = document.querySelector(select.menuProduct.filtersform);
+    console.log(filtersForm);
+
+    filtersForm.addEventListener('click', function(event){
+    // check if clicked on element that is our checkbox
+    // if tagName = input? if type = checkbox? if name = filter?
+      if(event.target.tagName === 'INPUT' && event.target.type === 'checkbox' && event.target.name === 'filter'){
+        // yes - so show me his value
+        console.log(event.target.value);
+
+        // check if the input is selected?
+        if(event.target.checked){
+        // yes - input is selected, so add filter's value to the [] filters array
+          filters.push(event.target.value);
+          // no - input isn't selected, so remove filter's value from the [] filters array
+        } else {
+          const index = filters.indexOf(event.target.value);
+          filters.splice(index, 1);
+        }
+      }
+      console.log(filters);
+    });
+
+
+
   }
   initActions();
 }
