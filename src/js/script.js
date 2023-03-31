@@ -102,7 +102,8 @@
 
         // check if the input is selected?
         if(event.target.checked){
-        // yes - input is selected, so add filter's value to the [] filters array
+          console.log(event.target.checked);
+          // yes - input is selected, so add filter's value to the [] filters array
           filters.push(event.target.value);
           // no - input isn't selected, so remove filter's value from the [] filters array
         } else {
