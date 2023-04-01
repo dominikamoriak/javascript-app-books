@@ -15,7 +15,6 @@
     menuProduct: {
       imageWrapper: '.book__image',
       productId: 'data-id',
-      imageId: '.book__image[data-id="id-of-the-book-here"]',
       filtersForm: '.filters',
       filtersInputName: 'filters.input[name="filter"]',
     }
@@ -119,10 +118,7 @@
   }
   initActions();
 
-  function filterBooks(){
-
-    const filters = document.querySelectorAll(select.menuProduct.filtersInputName);
-    console.log(filters);
+  function filterBooks(filters){
     
     for(let book of dataSource.books){
       let shouldBeHidden = false;
@@ -134,7 +130,7 @@
           break;
         }
 
-        const bookImageId = document.querySelector(select.menuProduct.imageId);
+        const bookImageId = document.querySelector('.book__image[data-id="' + dataSource.id +'"]');
         console.log(bookImageId);
 
         // check value of shouldBeHidden
@@ -145,7 +141,7 @@
         // = false, so get class hidden
           bookImageId.classList.remove('hidden');
         }
-
+        console.log(filters);
       }
 
     
