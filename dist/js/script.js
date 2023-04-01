@@ -113,7 +113,7 @@
         }
       }
       console.log(filters);
-      filterBooks();
+      filterBooks(filters);
     });
   }
   initActions();
