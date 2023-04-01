@@ -25,8 +25,18 @@
     templateProduct: Handlebars.compile(document.querySelector(select.templateOf.templateProduct).innerHTML),
   };
 
-  function render(){
-    const thisProduct = this;
+  class BooksList{
+    constructor(){
+        const thisProduct = this;
+
+        thisProduct.initData();
+        thisProduct.getElements();
+        thisProduct.initActions();
+        thisProduct.determineRatingBgc(rating);
+    }
+
+  initData(){
+   this.data = dataSource.books;
 
     for(let book of dataSource.books){
       console.log(book);
@@ -51,17 +61,26 @@
       booksListContainer.appendChild(thisProduct.bookElementDom);
     }
   }
-  render();
 
-  function initActions(){
-    const favoriteBooks = [];
+  getElements(){
+    const thisProduct = this;
 
-    // find the books list container
-    const booksListContainer = document.querySelector(select.containerOf.productsList);
+    thisProduct.dom = {};
+    thisProduct.dom.wrapper = element;
+
+    thisProduct.booksListContainer = thisProduct.element.querySelector(select.containerOf.productsList);
     console.log(booksListContainer);
 
+    thisProduct.filtersForm = thisProduct.element.querySelector(select.menuProduct.filtersForm);
+    console.log(filtersForm);
+  }
+
+  initActions(){
+    const thisProduct = this;
+    const favoriteBooks = [];
+
     // add event listener to books list container
-    booksListContainer.addEventListener('dblclick', function(event){
+    thisProduct.booksListContainer.addEventListener('dblclick', function(event){
     // find the clicked book image
       const clickedElement = event.target.offsetParent;
       // check if the clicked element is a book image
@@ -96,10 +115,8 @@
     });
 
     const filters = [];
-    const filtersForm = document.querySelector(select.menuProduct.filtersForm);
-    console.log(filtersForm);
 
-    filtersForm.addEventListener('click', function(event){
+    thisProduct.filtersForm.addEventListener('click', function(event){
     // check if clicked on element that is our checkbox
     // if tagName = input? if type = checkbox? if name = filter?
       if(event.target.tagName === 'INPUT' && event.target.type === 'checkbox' && event.target.name === 'filter'){
@@ -121,9 +138,9 @@
       filterBooks(filters);
     });
   }
-  initActions();
 
-  function filterBooks(filters){
+  filterBooks(filters){
+    const thisProduct = this;
     
     for(let book of dataSource.books){
       let shouldBeHidden = false;
@@ -151,7 +168,9 @@
     }
   }
 
-  function determineRatingBgc(rating){
+  determineRatingBgc(rating){
+    const thisProduct = this;
+
     if(rating < 6){
         return 'linear-gradient(to bottom,  #fefcea 0%, #f1da36 100%)';
         } else if(rating > 6 && <= 8) {
@@ -162,6 +181,6 @@
             return 'linear-gradient(to bottom, #ff0084 0%, #ff0084 100%)';
         }
     }
-
-  
+  }
+  const app = new BooksList();
 }
