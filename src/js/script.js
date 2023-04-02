@@ -82,7 +82,7 @@
       const favoriteBooks = [];
 
       // add event listener to books list container
-      thisProduct.booksListContainer.addEventListener('dblclick', function(event){
+      thisProduct.dom.wrapper.booksListContainer.addEventListener('dblclick', function(event){
         // find the clicked book image
         const clickedElement = event.target.offsetParent;
         // check if the clicked element is a book image
