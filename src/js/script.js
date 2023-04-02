@@ -31,21 +31,27 @@
 
       thisProduct.initData();
       thisProduct.getElements();
-      thisProduct.initActions();
-      thisProduct.determineRatingBgc();
     }
 
     initData(){
       this.data = dataSource.books;
       const thisProduct = this;
 
+      // find container .books-list //
+      const booksListContainer = document.querySelector(select.containerOf.productsList);
+      console.log(booksListContainer);
+
       for(let book of dataSource.books){
         console.log(book);
 
         const ratingBgc = thisProduct.determineRatingBgc(book.rating);
         console.log(ratingBgc);
-        const ratingWidth = '(book.rating*10)%';
+        const ratingWidth = (book.rating*10);
         console.log(ratingWidth);
+
+        // add ratingBgc and ratingWidth to the book object
+        book.ratingBgc = ratingBgc;
+        book.ratingWidth = ratingWidth;
 
         // generate HTML based on template //
         const generatedHTML = templates.templateProduct(book);
@@ -54,25 +60,22 @@
         // create element DOM using utils.createElementFromHTML //
         thisProduct.bookElementDom = utils.createDOMFromHTML(generatedHTML);
 
-        // find container .books-list //
-        const booksListContainer = document.querySelector(select.containerOf.productsList);
-        console.log(booksListContainer);
-
         // add element DOM to container .books-list //
         booksListContainer.appendChild(thisProduct.bookElementDom);
       }
+      thisProduct.initActions(this.booksListContainer);
     }
 
-    getElements(){
+    getElements(element){
       const thisProduct = this;
 
       thisProduct.dom = {};
-      thisProduct.dom.wrapper = thisProduct.element;
+      thisProduct.dom.wrapper = element;
 
-      thisProduct.booksListContainer = thisProduct.element.querySelector(select.containerOf.productsList);
+      thisProduct.booksListContainer = element.querySelector(select.containerOf.productsList);
       console.log(thisProduct.booksListContainer);
 
-      thisProduct.filtersForm = thisProduct.element.querySelector(select.menuProduct.filtersForm);
+      thisProduct.filtersForm = element.querySelector(select.menuProduct.filtersForm);
       console.log(thisProduct.filtersForm);
     }
 
@@ -181,5 +184,5 @@
       }
     }
   }
-  const app = new BooksList();
+  new BooksList();
 }
