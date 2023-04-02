@@ -73,8 +73,7 @@
         wrapper: element
       };
   
-
-      thisProduct.filtersForm = element.querySelector(select.menuProduct.filtersForm);
+      thisProduct.filtersForm = thisProduct.dom.wrapper.querySelector(select.menuProduct.filtersForm);
       console.log(thisProduct.filtersForm);
     }
 
