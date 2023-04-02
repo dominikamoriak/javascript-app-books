@@ -69,8 +69,10 @@
     getElements(element){
       const thisProduct = this;
 
-      thisProduct.dom = {};
-      thisProduct.dom.wrapper = element;
+      thisProduct.dom = {
+        wrapper: element
+      };
+  
 
       thisProduct.filtersForm = element.querySelector(select.menuProduct.filtersForm);
       console.log(thisProduct.filtersForm);
