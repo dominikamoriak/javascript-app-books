@@ -63,7 +63,7 @@
         // add element DOM to container .books-list //
         booksListContainer.appendChild(thisProduct.bookElementDom);
       }
-      thisProduct.initActions(this.booksListContainer);
+      thisProduct.initActions(booksListContainer);
     }
 
     getElements(element){
@@ -71,9 +71,6 @@
 
       thisProduct.dom = {};
       thisProduct.dom.wrapper = element;
-
-      thisProduct.booksListContainer = element.querySelector(select.containerOf.productsList);
-      console.log(thisProduct.booksListContainer);
 
       thisProduct.filtersForm = element.querySelector(select.menuProduct.filtersForm);
       console.log(thisProduct.filtersForm);
