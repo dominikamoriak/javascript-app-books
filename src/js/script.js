@@ -31,7 +31,7 @@
 
       thisProduct.initData();
       thisProduct.getElements();
-      thisProduct.initActions(booksListContainer);
+      thisProduct.initActions(thisProduct.booksListContainer);
     }
 
     initData(){
@@ -40,7 +40,7 @@
 
       // find container .books-list //
       thisProduct.booksListContainer = document.querySelector(select.containerOf.productsList);
-      console.log(booksListContainer);
+      console.log(thisProduct.booksListContainer);
 
       for(let book of dataSource.books){
         console.log(book);
@@ -62,7 +62,7 @@
         thisProduct.bookElementDom = utils.createDOMFromHTML(generatedHTML);
 
         // add element DOM to container .books-list //
-        booksListContainer.appendChild(thisProduct.bookElementDom);
+        thisProduct.booksListContainer.appendChild(thisProduct.bookElementDom);
       }
     }
 
