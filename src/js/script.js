@@ -38,6 +38,10 @@
       this.data = dataSource.books;
       const thisProduct = this;
 
+      // find container .books-list //
+      thisProduct.booksListContainer = document.querySelector(select.containerOf.productsList);
+      console.log(booksListContainer);
+
       for(let book of dataSource.books){
         console.log(book);
 
@@ -71,9 +75,6 @@
   
       thisProduct.filtersForm = thisProduct.dom.wrapper.querySelector(select.menuProduct.filtersForm);
       console.log(thisProduct.filtersForm);
-
-      thisProduct.booksListContainer = thisProduct.dom.wrapper.querySelector(select.containerOf.productsList);
-      console.log(booksListContainer);
     }
 
     initActions(){
@@ -81,7 +82,7 @@
       const favoriteBooks = [];
 
       // add event listener to books list container
-      thisProduct.dom.wrapper.booksListContainer.addEventListener('dblclick', function(event){
+      thisProduct.booksListContainer.addEventListener('dblclick', function(event){
         // find the clicked book image
         const clickedElement = event.target.offsetParent;
         // check if the clicked element is a book image
