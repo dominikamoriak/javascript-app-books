@@ -13,6 +13,7 @@
     },
 
     menuProduct: {
+      mainWrapper: '.container',
       imageWrapper: '.book__image',
       productId: 'data-id',
       filtersForm: '.filters',
@@ -70,8 +71,7 @@
       const thisProduct = this;
 
       thisProduct.dom = {
-        wrapper: element
-      };
+        wrapper: element.querySelector(select.menuProduct.mainWrapper)},
   
       thisProduct.filtersForm = thisProduct.dom.wrapper.querySelector(select.menuProduct.filtersForm);
       console.log(thisProduct.filtersForm);

@@ -13,6 +13,7 @@
     },
 
     menuProduct: {
+      mainWrapper: '.container',
       imageWrapper: '.book__image',
       productId: 'data-id',
       filtersForm: '.filters',
@@ -31,6 +32,7 @@
 
       thisProduct.initData();
       thisProduct.getElements();
+      thisProduct.initActions(thisProduct.booksListContainer);
     }
 
     initData(){
@@ -38,8 +40,8 @@
       const thisProduct = this;
 
       // find container .books-list //
-      const booksListContainer = document.querySelector(select.containerOf.productsList);
-      console.log(booksListContainer);
+      thisProduct.booksListContainer = document.querySelector(select.containerOf.productsList);
+      console.log(thisProduct.booksListContainer);
 
       for(let book of dataSource.books){
         console.log(book);
@@ -61,17 +63,15 @@
         thisProduct.bookElementDom = utils.createDOMFromHTML(generatedHTML);
 
         // add element DOM to container .books-list //
-        booksListContainer.appendChild(thisProduct.bookElementDom);
+        thisProduct.booksListContainer.appendChild(thisProduct.bookElementDom);
       }
-      thisProduct.initActions(booksListContainer);
     }
 
     getElements(element){
       const thisProduct = this;
 
       thisProduct.dom = {
-        wrapper: element
-      };
+        wrapper: element.querySelector(select.menuProduct.mainWrapper)},
   
       thisProduct.filtersForm = thisProduct.dom.wrapper.querySelector(select.menuProduct.filtersForm);
       console.log(thisProduct.filtersForm);
@@ -82,7 +82,7 @@
       const favoriteBooks = [];
 
       // add event listener to books list container
-      thisProduct.dom.wrapper.booksListContainer.addEventListener('dblclick', function(event){
+      thisProduct.booksListContainer.addEventListener('dblclick', function(event){
         // find the clicked book image
         const clickedElement = event.target.offsetParent;
         // check if the clicked element is a book image
