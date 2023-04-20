@@ -126,6 +126,8 @@
           // yes - so show me his value
           console.log(event.target.value);
 
+          thisProduct.filterBooks(filters);
+          
           // check if the input is selected?
           if(event.target.checked){
             console.log(event.target.checked);
@@ -138,7 +140,6 @@
           }
         }
         console.log(filters);
-        thisProduct.filterBooks(filters);
       });
     }
 
@@ -154,9 +155,6 @@
             break;
           }
 
-          const bookImageId = document.querySelector('.book__image[data-id="' + dataSource.id +'"]');
-          console.log(bookImageId);
-
           // check value of shouldBeHidden
           if(shouldBeHidden){
             // = true, so find element .book__image and add class hidden
@@ -165,6 +163,10 @@
             // = false, so get class hidden
             bookImageId.classList.remove('hidden');
           }
+
+          const bookImageId = document.querySelector('.book__image[data-id="' + book.id +'"]');
+          console.log(bookImageId);
+
           console.log(filters);
         }
       }
