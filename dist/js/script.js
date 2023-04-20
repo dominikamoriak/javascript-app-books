@@ -67,11 +67,12 @@
       }
     }
 
-    getElements(element){
+    getElements(){
       const thisProduct = this;
 
       thisProduct.dom = {
-        wrapper: element.querySelector(select.menuProduct.mainWrapper)},
+        wrapper: document.querySelector(select.menuProduct.mainWrapper)
+      },
   
       thisProduct.filtersForm = thisProduct.dom.wrapper.querySelector(select.menuProduct.filtersForm);
       console.log(thisProduct.filtersForm);
