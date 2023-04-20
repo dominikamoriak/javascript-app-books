@@ -126,6 +126,8 @@
           // yes - so show me his value
           console.log(event.target.value);
 
+          thisProduct.filterBooks(filters);
+          
           // check if the input is selected?
           if(event.target.checked){
             console.log(event.target.checked);
@@ -138,7 +140,6 @@
           }
         }
         console.log(filters);
-        thisProduct.filterBooks(filters);
       });
     }
 
@@ -153,8 +154,7 @@
             shouldBeHidden = true;
             break;
           }
-
-          const bookImageId = document.querySelector('.book__image[data-id="' + dataSource.id +'"]');
+          const bookImageId = document.querySelector('.book__image[data-id="' + book.id +'"]');
           console.log(bookImageId);
 
           // check value of shouldBeHidden
@@ -165,9 +165,12 @@
             // = false, so get class hidden
             bookImageId.classList.remove('hidden');
           }
+
           console.log(filters);
         }
+
       }
+
     }
 
     determineRatingBgc(rating){
