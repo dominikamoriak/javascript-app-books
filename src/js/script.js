@@ -154,20 +154,21 @@
             shouldBeHidden = true;
             break;
           }
-          const bookImageId = document.querySelector('.book__image[data-id="' + book.id +'"]');
-          console.log(bookImageId);
-
-          // check value of shouldBeHidden
-          if(shouldBeHidden){
-            // = true, so find element .book__image and add class hidden
-            bookImageId.classList.add('hidden');
-          } else {
-            // = false, so get class hidden
-            bookImageId.classList.remove('hidden');
-          }
-
-          console.log(filters);
         }
+        const bookImageId = document.querySelector('.book__image[data-id="' + book.id +'"]');
+        console.log(bookImageId);
+
+        // check value of shouldBeHidden
+        if(shouldBeHidden){
+          // = true, so find element .book__image and add class hidden
+          bookImageId.classList.add('hidden');
+        } else {
+          // = false, so get class hidden
+          bookImageId.classList.remove('hidden');
+        }
+
+        console.log(filters);
+        
 
       }
 
