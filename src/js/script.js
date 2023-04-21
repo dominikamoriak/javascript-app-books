@@ -125,8 +125,6 @@
         if(event.target.tagName === 'INPUT' && event.target.type === 'checkbox' && event.target.name === 'filter'){
           // yes - so show me his value
           console.log(event.target.value);
-
-          thisProduct.filterBooks(filters);
           
           // check if the input is selected?
           if(event.target.checked){
@@ -138,6 +136,7 @@
             const index = filters.indexOf(event.target.value);
             filters.splice(index, 1);
           }
+          thisProduct.filterBooks(filters);
         }
         console.log(filters);
       });
